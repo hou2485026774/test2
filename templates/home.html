@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="top" style="width: 500px;height: 200px">
+    <center><h1> 这里是主页</h1></center>
+当前用户：{{ session }}
+</div>
+
+<a href="/user/show_user2">展示用户</a>
+<a href="/message?username={{ session }}">展示留言</a>
+<a href="/user/to_register/">注册新账号</a>
+<a href="/user">退出登录</a>
+</body>
+</html>

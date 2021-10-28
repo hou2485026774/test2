@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>留言板</title>
+</head>
+<body>
+<table border="1" cellspacing="0" width="1000">
+    <tr>
+        <td>用户</td>
+        <td>信息</td>
+{#        <td>时间</td>#}
+    </tr>
+    {% for i in mes %}
+
+    <tr>
+    <td>{{ i.sname }}</td>
+    <td>{{ i.message }}</td>
+{#    <td>{{ i.dat }}</td>#}
+    </tr>
+    {% endfor %}
+</table>
+
+<form action="/message/make_message" method="get">
+    <input type="text" width="200" height="400" name="mess">
+    <input type="submit" value="发布">
+</form>
+
+</body>
+</html>

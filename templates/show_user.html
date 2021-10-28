@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户查询</title>
+</head>
+<body>
+
+<table border="1" cellspacing="0" width="500">
+<tr>
+    <td>编号</td>
+    <td>用户名</td>
+    <td>密码</td>
+    <td>操作</td>
+</tr>
+{#遍历数据#}
+    {% for i in page_data %}
+    <tr>
+    <td>{{ i.id }}</td>
+    <td>{{ i.sname }}</td>
+    <td>{{ i.spwd }}</td>
+    <td><a href="/user/delete?sname={{ i.sname }}">删除</a></td>
+</tr>
+    {% endfor %}
+
+</table>
+
+<div>
+   {% if page_data.has_previous %}
+        <a href="?num={{ page_data.previous_page_number }}">上一页</a>
+    {% endif %}
+    {% for n in pager.page_range %}
+        {% if n < 11 %}
+        <a href="?num={{ n }}">{{ n }}</a>
+        {% endif %}
+    {% endfor %}
+    {% if page_data.has_next %}
+        <a href="?num={{ page_data.next_page_number }}">下一页</a>
+    {% endif %}
+</div>
+<form action="/user/show_user2" method="get">
+    每页显示<input type="number" name="size">条
+    <input type="submit" value="提交">
+</form>
+</body>
+</html>
