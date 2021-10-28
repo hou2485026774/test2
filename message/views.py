@@ -11,6 +11,7 @@ def show_message(request):
 
 
 def make_message(request):
+
     message = request.GET.get('mess')
     username = request.session['username']
     mes = Message(sname=username,message=message)
@@ -20,11 +21,24 @@ def make_message(request):
 def delete_message(request):
 
     username = request.GET.get('username')
-
-
-
-
     #删除留言
     Message.objects.get(sname=username).delete()
 
+    return redirect('/message')
+
+
+def update_message(request):
+
+    #获取修改请求的数据
+    username = request.GET.get('username')
+
+    mes = Message.objects.filter(sname=username)
+    return render(request,'update_message.html',{'mes':mes})
+
+
+def update(request):
+
+    username = request.GET.get('username')
+    mes = request.GET.get('mes')
+    Message.objects.filter(sname=username).update(message=mes)
     return redirect('/message')

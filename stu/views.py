@@ -3,7 +3,6 @@ import math
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import *
-import pymysql
 # Create your views here.
 def index(request):
 

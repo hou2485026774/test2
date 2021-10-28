@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑页面</title>
+</head>
+<body>
+
+<form action="/message/update/" method="get">
+{%  for i in mes %}
+    <input type="text" value="{{ i.sname }}" name="username">
+
+    <input type="text" value="{{ i.message }}" name="mes">
+    {% endfor %}
+
+    <input type="submit" value="修改">
+</form>
+
+</body>
+</html>
