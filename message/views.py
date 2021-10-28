@@ -22,6 +22,8 @@ def delete_message(request):
     username = request.GET.get('username')
 
 
+
+
     #删除留言
     Message.objects.get(sname=username).delete()
 
