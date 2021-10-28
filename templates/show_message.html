@@ -9,6 +9,7 @@
     <tr>
         <td>用户</td>
         <td>信息</td>
+        <td>操作</td>
 {#        <td>时间</td>#}
     </tr>
     {% for i in mes %}
@@ -16,6 +17,7 @@
     <tr>
     <td>{{ i.sname }}</td>
     <td>{{ i.message }}</td>
+    <td><a href="/message/delete_message?username={{ i.sname }}">删除</a></td>
 {#    <td>{{ i.dat }}</td>#}
     </tr>
     {% endfor %}

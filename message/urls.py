@@ -5,5 +5,6 @@ from . import  views
 
 urlpatterns = [
     path('',views.show_message),
-    path('make_message/',views.make_message)
+    path('make_message/',views.make_message),
+    path('delete_message/',views.delete_message)
 ]
