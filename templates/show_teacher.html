@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% for i in teacher %}
+    <p>{{ i.tname }}</p>
+    <p>{{ i.tno }}</p>
+{% endfor %}
+
+
+{% for j in tcard1 %}
+{#    <p>{{ j.teacher }}</p>#}
+    <p>{{  j.major}}</p>
+{% endfor %}
+</body>
+</html>

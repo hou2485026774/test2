@@ -9,7 +9,8 @@ urlpatterns = [
     path('to_register/',views.to_register),
     path('show_user/',views.show_user),
     path('show_user2/',views.show_user2),
-    path('delete/',views.delete)
+    path('delete/',views.delete),
+    path('JoinShow/',views.JoinShow)
 
     # path('home/',views.home)
 

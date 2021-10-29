@@ -15,3 +15,16 @@ class Student(models.Model):
     #设置生成的表的信息
     class Meta:
         db_table = 't_stu2'
+class Teacher(models.Model):
+    tno = models.AutoField(primary_key=True)
+    tname = models.CharField(max_length=30)
+
+    def __unicode__(self):
+        return u'Teacher:%s'%self.tname
+
+class Tcard(models.Model):
+    teacher = models.OneToOneField(Teacher,primary_key=True,on_delete=models.CASCADE)
+    major = models.CharField(max_length=30,unique=True)#一个老师只能教一科
+
+    def __unicode__(self):
+        return u'Tcard:%s'%self.major
