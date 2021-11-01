@@ -10,7 +10,8 @@ urlpatterns = [
     path('show_user/',views.show_user),
     path('show_user2/',views.show_user2),
     path('delete/',views.delete),
-    path('JoinShow/',views.JoinShow)
+    path('JoinShow/',views.JoinShow),
+    path('xs/',views.XueSheng)
 
     # path('home/',views.home)
 
