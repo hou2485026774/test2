@@ -8,8 +8,12 @@
 
 <form action="/message/update/" method="get">
 {%  for i in mes %}
+    <lable>编号</lable>
+    <input type="text" value="{{ i.id }}" name="id">
+     <lable>用户</lable>
     <input type="text" value="{{ i.sname }}" name="username">
 
+    <lable>内容</lable>
     <input type="text" value="{{ i.message }}" name="mes">
     {% endfor %}
 

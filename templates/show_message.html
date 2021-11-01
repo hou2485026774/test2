@@ -5,29 +5,49 @@
     <title>留言板</title>
 </head>
 <body>
+<div style="float: right"><a href="/user">Go Home！</a></div>
 <table border="1" cellspacing="0" width="1000">
     <tr>
+        <td>编号</td>
         <td>用户</td>
         <td>信息</td>
-        <td>操作</td>
-{#        <td>时间</td>#}
+        <td colspan="2" style="text-align: center">操作</td>
+        <td>时间</td>
     </tr>
-    {% for i in mes %}
+    {% for i in page_data %}
 
     <tr>
+    <td>{{ forloop.counter }}&emsp;or&emsp;{{ i.id }}</td>
     <td>{{ i.sname }}</td>
     <td>{{ i.message }}</td>
-    <td><a href="/message/delete_message?username={{ i.sname }}">删除</a></td>
-    <td><a href="/message/update_message?username={{ i.sname }}">修改</a></td>
-{#    <td>{{ i.dat }}</td>#}
+    <td><a href="/message/delete_message?id={{ i.id }}" onclick="return confirm('确认删除吗？')">删除</a></td>
+    <td><a href="/message/update_message?id={{ i.id }}">修改</a></td>
+    <td>{{ i.dat }}</td>
     </tr>
     {% endfor %}
 </table>
-
+<form action="/message" method="get">
+    每页显示<input type="number" name="size">条
+    <input type="submit" value="提交">
+</form>
 <form action="/message/make_message" method="get">
-    <input type="text" width="200" height="400" name="mess">
+    <input type="text" style="width: 400px;height: 200px;margin-top: 5%" name="mess">
     <input type="submit" value="发布">
 </form>
+<div>
+   {% if page_data.has_previous %}
+        <a href="?num={{ page_data.previous_page_number }}">上一页</a>
+    {% endif %}
+    {% for n in pager.page_range %}
+        {% if n < 11 %}
+        <a href="?num={{ n }}">{{ n }}</a>
+        {% endif %}
+    {% endfor %}
+    {% if page_data.has_next %}
+        <a href="?num={{ page_data.next_page_number }}">下一页</a>
+    {% endif %}
+</div>
+
 
 </body>
 </html>

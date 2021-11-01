@@ -45,18 +45,15 @@ def register(request):
 def page(num,size=2):
     #接受页码
     num = int(num)
-
     #计算总记录数
     total = User.objects.count()
     #总页数
     total_page =math.ceil(total*1.0/size)
-
     #判断是否越界
     if num<1:
         num = 1
     elif num>total_page:
         num=total_page
-
     user = User.objects.all()[((num-1)*size):num*size]
     return user,num
 def show_user(request):
@@ -64,11 +61,9 @@ def show_user(request):
     num = request.GET.get('num',1)
     #处理分页请求
     user,n = page(num)
-
     #上一页 下一页
     pre_page = n-1
     next_page = n+1
-
     return render(request,'show_user.html',{'user':user,'pre_page':pre_page,'next_page':next_page})#将值传给前端页面
 
 from django.core.paginator import Paginator,PageNotAnInteger,EmptyPage
@@ -76,7 +71,7 @@ from django.core.paginator import Paginator,PageNotAnInteger,EmptyPage
 def show_user2(request):
     #获取当前页面
     num = request.GET.get('num',1)
-    size = request.GET.get('size',1)
+    size = request.GET.get('size',5)
     # print(size)
     #查询数据
     user = User.objects.all()
