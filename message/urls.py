@@ -8,5 +8,6 @@ urlpatterns = [
     path('make_message/',views.make_message),
     path('delete_message/',views.delete_message),
     path('update_message/',views.update_message),
-    path('update/',views.update)
+    path('update/',views.update),
+    path('ShowJson/',views.ShowJson)
 ]

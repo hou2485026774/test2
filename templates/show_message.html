@@ -12,7 +12,7 @@
         <td>用户</td>
         <td>信息</td>
         <td colspan="2" style="text-align: center">操作</td>
-        <td>时间</td>
+{#        <td>时间</td>#}
     </tr>
     {% for i in page_data %}
 
@@ -22,7 +22,7 @@
     <td>{{ i.message }}</td>
     <td><a href="/message/delete_message?id={{ i.id }}" onclick="return confirm('确认删除吗？')">删除</a></td>
     <td><a href="/message/update_message?id={{ i.id }}">修改</a></td>
-    <td>{{ i.dat }}</td>
+{#    <td>{{ i.dat }}</td>#}
     </tr>
     {% endfor %}
 </table>

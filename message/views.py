@@ -1,4 +1,7 @@
+import json
+
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 # Create your views here.
@@ -58,3 +61,11 @@ def update(request):
     mes = request.GET.get('mes')
     Message.objects.filter(id=id).update(message=mes)
     return redirect('/message')
+#JSON数据
+from django.core import serializers
+def ShowJson(request):
+
+    result = {"message": 'success', "code": '0', "data": []}
+    mes = Message.objects.all()
+    result["data"] = serializers.serialize('python',mes)
+    return HttpResponse(json.dumps(result),content_type="application/json")
