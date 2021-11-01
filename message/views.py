@@ -69,3 +69,4 @@ def ShowJson(request):
     mes = Message.objects.all()
     result["data"] = serializers.serialize('python',mes)
     return HttpResponse(json.dumps(result),content_type="application/json")
+
