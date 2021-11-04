@@ -99,8 +99,8 @@ def delete(request):
 def JoinShow(request):
     teacher = Teacher.objects.all()#查询老师表信息
     tcard1 = Teacher.objects.filter(tno='1001')[0].tcard#根据老师表第一条信息查询教学科目表中该老师教授的科目
-    print(type(teacher))
-    print(django.db.models.query.QuerySet(tcard1))
+    # print(type(teacher))
+    # print(django.db.models.query.QuerySet(tcard1))
     return render(request,'show_teacher.html',{'tcard1':django.db.models.query.QuerySet(tcard1),'teacher':teacher})
 
 def XueSheng(request):
