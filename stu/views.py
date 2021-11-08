@@ -3,7 +3,7 @@ import math
 import django.db.models.query
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from .models import *
+from stu.models import *
 # Create your views here.
 def index(request):
 
@@ -25,6 +25,7 @@ def login(request):
 # def home(request):
 #     username = request.session['username']
 #     return render(request,'home.html',username)
+import pymysql
 #跳转注册
 def to_register(request):
     return render(request,'register.html')

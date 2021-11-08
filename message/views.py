@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 # Create your views here.
-from .models import *
+from message.models import *
 
 
 def show_message(request):
