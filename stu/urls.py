@@ -11,7 +11,9 @@ urlpatterns = [
     path('show_user2/',views.show_user2),
     path('delete/',views.delete),
     path('JoinShow/',views.JoinShow),
-    path('xs/',views.XueSheng)
+    path('xs/',views.XueSheng),
+    path('techer_register/',views.techer_register),
+    path('techer_register2/',views.techer_register2)
 
     # path('home/',views.home)
 

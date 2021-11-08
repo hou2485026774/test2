@@ -9,6 +9,8 @@
 {% for i in teacher %}
     <p>{{ i.tname }}</p>
     <p>{{ i.tno }}</p>
+    <p>{{ i.t_img }}</p>
+    <img src="/media/{{ i.t_img }}" width="100px">
 {% endfor %}
 
 

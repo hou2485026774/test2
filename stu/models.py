@@ -20,7 +20,7 @@ class User(models.Model):
 class Teacher(models.Model):
     tno = models.AutoField(primary_key=True)
     tname = models.CharField(max_length=30)
-    t_img = models.ImageField(upload_to='E:\\Users\\flux\PycharmProjects\djangoProject1\\test2\img',null=True)
+    t_img = models.ImageField(upload_to='img',null=True)
 
     def __unicode__(self):
         return u'Teacher:%s'%self.tname

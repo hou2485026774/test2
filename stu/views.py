@@ -99,7 +99,7 @@ def delete(request):
 
 def JoinShow(request):
     teacher = Teacher.objects.all()#查询老师表信息
-    tcard1 = Teacher.objects.filter(tno='1001')[0].tcard#根据老师表第一条信息查询教学科目表中该老师教授的科目
+    tcard1 = Teacher.objects.all()[0].tcard#根据老师表第一条信息查询教学科目表中该老师教授的科目
     # print(type(teacher))
     # print(django.db.models.query.QuerySet(tcard1))
     return render(request,'show_teacher.html',{'tcard1':django.db.models.query.QuerySet(tcard1),'teacher':teacher})
@@ -110,3 +110,36 @@ def XueSheng(request):
     # print(c)
     print(x)
     return HttpResponse('END')
+#原生图片上传
+def techer_register(request):
+    if request.method =='GET':
+        return render(request,'t_r.html')
+    elif request.method=='POST':
+        t_name = request.POST.get('t_name','')
+        t_img = request.FILES.get('t_img','')
+        # print(t_img)
+        import os
+        #判断目录是否存在
+        if not os.path.exists('media'):
+            os.makedirs('media')
+        with open(os.path.join(os.getcwd(),'media',t_img.name),'wb') as fw:
+            #一次性读取 写入
+            fw.write(t_img.read())
+
+            #分块写入 提高效率
+            for ck in t_img.chunks():
+                fw.write(ck)
+        return HttpResponse('成功！')
+    else:
+        return render(request,'t_r.html')
+#django 上传
+def techer_register2(request):
+    if request.method =='GET':
+        return render(request,'t_r.html')
+    elif request.method=='POST':
+        t_name = request.POST.get('t_name','')
+        t_img = request.FILES.get('t_img','')
+        #插入数据库
+        Teacher.objects.create(tname=t_name,t_img=t_img)
+
+    return HttpResponse('上传成功')
