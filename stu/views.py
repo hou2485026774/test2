@@ -110,6 +110,8 @@ def XueSheng(request):
     # print(c)
     print(x)
     return HttpResponse('END')
+
+
 #原生图片上传
 def techer_register(request):
     if request.method =='GET':
