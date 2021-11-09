@@ -5,18 +5,23 @@
     <title>Title</title>
 </head>
 <body>
-
-{% for i in teacher %}
-    <p>{{ i.tname }}</p>
-    <p>{{ i.tno }}</p>
-    <p>{{ i.t_img }}</p>
-    <img src="/media/{{ i.t_img }}" width="100px">
+<table border="1" width="500px">
+<tr>
+    <td>姓名</td>
+    <td>编号</td>
+    <td>照片</td>
+    <td>课程</td>
+</tr>
+    {% for i in teacher %}{% for j in tcard1 %}
+<tr>
+        <td>{{ i.tname }}</td>
+        <td>{{ i.tno }}</td>
+        <td><img src="/media/{{ i.t_img }}" width="100px"></td>
+        <td>{{ j.major}}</td>
+</tr>
 {% endfor %}
-
-
-{% for j in tcard1 %}
-{#    <p>{{ j.teacher }}</p>#}
-    <p>{{  j.major}}</p>
 {% endfor %}
+</table>
+
 </body>
 </html>

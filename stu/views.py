@@ -12,8 +12,9 @@ def index(request):
 #登录功能
 def login(request):
     #接受参数
-    username = request.GET.get('name')
-    password = request.GET.get('password')
+    username = request.POST.get('name')
+    password = request.POST.get('password')
+    print(username,'+',password)
     request.session['username']=username
     #登录逻辑处理
     if username and password:
@@ -91,19 +92,31 @@ def show_user2(request):
 def delete(request):
     username = request.GET.get('sname')
     stu = User.objects.get(sname=username)
-
     stu.delete()
     return redirect('/user/show_user2')
 
+def dictfetchall(cursor):
+    "将游标返回的结果保存到一个字典对象中"
+    desc = cursor.description
+    return [
+    dict(zip([col[0] for col in desc], row))
+    for row in cursor.fetchall()
+    ]
+from django.db import connection
 #表连接查询
-
 def JoinShow(request):
-    teacher = Teacher.objects.all()#查询老师表信息
-    tcard1 = Teacher.objects.all()[0].tcard#根据老师表第一条信息查询教学科目表中该老师教授的科目
-    # print(type(teacher))
-    # print(django.db.models.query.QuerySet(tcard1))
-    return render(request,'show_teacher.html',{'tcard1':django.db.models.query.QuerySet(tcard1),'teacher':teacher})
-
+    # teacher = Teacher.objects.all()#查询老师表信息
+    # tcard1 = Teacher.objects.all()[0].tcard#根据老师表信息查询教学科目表中该老师教授的科目
+    # # print(type(teacher))
+    # # print(django.db.models.query.QuerySet(tcard1))
+    # return render(request,'show_teacher.html',{'tcard1':django.db.models.query.QuerySet(tcard1),'teacher':teacher})
+    cursor  = connection.cursor()
+    cursor.execute("select * from stu_teacher a,stu_tcard b where a.tno=b.teacher_id")
+    values = dictfetchall(cursor)
+    print(values)
+    cursor.close()
+    connection.close()
+    return render(request,'show.html',{'values':values})
 def XueSheng(request):
     # c = Xuesheng.objects.first().clazz
     x = Clazz.objects.first()
