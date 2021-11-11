@@ -1,4 +1,5 @@
 import math
+import os
 
 import django.db.models.query
 from django.http import HttpResponse
@@ -15,13 +16,15 @@ def login(request):
     username = request.POST.get('name')
     password = request.POST.get('password')
     print(username,'+',password)
-    request.session['username']=username
+    response = HttpResponse()
+    # request.session['username']=username
+    response.set_cookie('user',username)
     #登录逻辑处理
     if username and password:
         #判断查询
         c = User.objects.filter(sname=username,spwd=password).count()
         if c==1:
-            return render(request,'home.html',{'session':request.session['username']})
+            return render(request,'home.html')
     return HttpResponse('登录失败')
 # def home(request):
 #     username = request.session['username']
@@ -94,7 +97,7 @@ def delete(request):
     stu = User.objects.get(sname=username)
     stu.delete()
     return redirect('/user/show_user2')
-
+#原生sql查询时，将结果转化为字典 直接传参
 def dictfetchall(cursor):
     "将游标返回的结果保存到一个字典对象中"
     desc = cursor.description
@@ -123,7 +126,6 @@ def XueSheng(request):
     # print(c)
     print(x)
     return HttpResponse('END')
-
 
 #原生图片上传
 def techer_register(request):
@@ -154,7 +156,14 @@ def techer_register2(request):
     elif request.method=='POST':
         t_name = request.POST.get('t_name','')
         t_img = request.FILES.get('t_img','')
+        major = request.POST.get('major','')
         #插入数据库
         Teacher.objects.create(tname=t_name,t_img=t_img)
-
     return HttpResponse('上传成功')
+
+#图片下载---未完成
+def download(request):
+    img = request.GET.get('img','')
+    #获取图片文件名
+    filename = img[img.rindex('/')+1]
+    return None

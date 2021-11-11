@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{#    <link rel="stylesheet" href="./static/style.css">#}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all">
+</head>
+<body>
+<center><h1>图书管理系统</h1></center>
+<nav class="navbar" role="navigation">
+    <div class="container-fluid">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                data-target="#example-navbar-collapse">
+            <span class="sr-only">切换导航</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/book/to_add/">新增图书</a>
+    </div>
+{#    <div class="collapse navbar-collapse" id="example-navbar-collapse">#}
+{#        <ul class="nav navbar-nav">#}
+{#            <li class="active"><a href="#">用户管理</a></li>#}
+{#            <li><a href="/book/to_add/">新增图书</a></li>#}
+{#            <li class="dropdown">#}
+{#                <a href="#" class="dropdown-toggle" data-toggle="dropdown">#}
+{#                    2 <b class="caret"></b>#}
+{#                </a>#}
+{#                <ul class="dropdown-menu">#}
+{#                    <li><a href="#">2.1</a></li>#}
+{#                    <li><a href="#">2.2</a></li>#}
+{#                    <li><a href="#">2.3</a></li>#}
+{#                    <li class="divider"></li>#}
+{#                    <li><a href="#">分离的链接</a></li>#}
+{#                    <li class="divider"></li>#}
+{#                    <li><a href="#">另一个分离的链接</a></li>#}
+{#                </ul>#}
+{#            </li>#}
+{#        </ul>#}
+{#    </div>#}
+    </div>
+</nav>
+<table border="1" cellspacing="0" class="table table-bordered" id="table">
+    <tr>
+        <th>图书编号</th>
+        <th>图书名</th>
+        <th>图片</th>
+        <th>出版社</th>
+        <th>数量</th>
+        <th colspan="2">操作</th>
+    </tr>
+    {% for book in page_data %}
+        <tr>
+            <td>{{ book.book_id }}</td>
+            <td>{{ book.book_name }}</td>
+            <td>{{ book.book_publisher }}</td>
+            <td><img src="/media/{{ book.book_img }}" width="50px"></td>
+            <td>{{ book.book_count }}</td>
+            <td><a href="/book/delete?book_id={{ book.book_id  }}" onclick="return confirm('确认删除吗？')">删除</a></td>
+            <td><a href="/book/update1?book_id={{ book.book_id  }}">修改</a></td>
+        </tr>
+    {% endfor %}
+</table>
+<div class="page">
+   {% if page_data.has_previous %}
+        <a href="?num={{ page_data.previous_page_number }}">上一页</a>
+    {% endif %}
+    {% for n in pager.page_range %}
+        {% if n < 11 %}
+        <a href="?num={{ n }}">{{ n }}</a>
+        {% endif %}
+    {% endfor %}
+    {% if page_data.has_next %}
+        <a href="?num={{ page_data.next_page_number }}">下一页</a>
+    {% endif %}
+</div>
+{#<form action="/book" method="get">#}
+{#    每页显示<input type="number" name="size">条#}
+{#    <input type="submit" value="提交">#}
+{#</form>#}
+</body>
+</html>

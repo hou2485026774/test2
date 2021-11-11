@@ -23,7 +23,8 @@ import stu
 urlpatterns = [
     path('admin/', admin.site.urls),#调用路由 再调用路由下具体路径
     path('user/',include('stu.urls')),#根路由 调用子路由  也就是大模块下的小模块
-    path('message/',include('message.urls'))
+    path('message/',include('message.urls')),
+    path('book/',include('book.urls'))
 ]
 
 from django.views.static import serve

@@ -11,12 +11,9 @@ from message.models import *
 def show_message(request):
     #--翻页
     num = request.GET.get('num',1)
-    size = request.GET.get('size',10)
-    # print("-----",size)
-    username = request.GET.get('username')
-    print("sss",username)
+    size = request.GET.get('size',3)
+    # print("-----",size
     mes = Message.objects.all()
-
     pager = Paginator(mes,int(size))
     try:
         page_data = pager.page(int(num))
@@ -24,11 +21,9 @@ def show_message(request):
         page_data = pager.page(1)  # 第一页
     except EmptyPage:
         page_data = pager.page(pager.num_pages)
-    return render(request,'show_message.html',{'mes':mes,'username':username,'pager':pager,"page_data":page_data})
-
+    return render(request,'show_message.html',{'mes':mes,'pager':pager,"page_data":page_data})
 
 def make_message(request):
-
     message = request.GET.get('mess')
     username = request.session['username']
     if len(message)==0:
@@ -36,27 +31,18 @@ def make_message(request):
     mes = Message(sname=username,message=message)
     mes.save()
     return redirect('/message',{'username':username})
-
 def delete_message(request):
-
     id = request.GET.get('id')
     #删除留言
     Message.objects.get(id=id).delete()
-
     return redirect('/message')
-
-
 def update_message(request):
-
     #获取修改请求的数据
     id = request.GET.get('id')
-
     mes = Message.objects.filter(id=id)
     return render(request,'update_message.html',{'mes':mes})
 
-
 def update(request):
-
     id = request.GET.get('id')
     mes = request.GET.get('mes')
     Message.objects.filter(id=id).update(message=mes)

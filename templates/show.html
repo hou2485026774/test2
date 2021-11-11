@@ -15,6 +15,7 @@
     <td>编号</td>
     <td>照片</td>
     <td>课程</td>
+    <td>操作</td>
 </tr>
     </thead>
 {% for i in values%}
@@ -24,6 +25,7 @@
     <td>{{ i.tno }}</td>
     <td><img src="/media/{{ i.t_img }}" alt="" width="50px"></td>
     <td>{{ i.major }}</td>
+    <td><a href="/user/download/?img={{ MEDIA_URL }}{{ i.t_img }}">下载</a></td>
 </tr>
     </tbody>
 {% endfor %}
