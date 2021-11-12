@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+   <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{#    <link rel="stylesheet" href="./static/style.css">#}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all">
+<body>
+
+<table border="1" cellspacing="0" class="table table-bordered" id="table">
+    <tr>
+        <th>用户编号</th>
+        <th>用户名</th>
+        <th>最大借阅数</th>
+        <th>已借阅数</th>
+    </tr>
+    {% for person in person %}
+        <tr>
+            <td>{{ person.uno }}</td>
+            <td>{{ person.uname }}</td>
+            <td>{{ person.max_num }}</td>
+            <td>{{ person.lend_num }}</td>
+        </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

@@ -2,6 +2,7 @@ import math
 import os
 
 import django.db.models.query
+from django.contrib.auth.hashers import make_password, check_password
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from stu.models import *
@@ -22,8 +23,9 @@ def login(request):
     #登录逻辑处理
     if username and password:
         #判断查询
-        c = User.objects.filter(sname=username,spwd=password).count()
-        if c==1:
+        c = User.objects.get(sname=username)
+        print(c.spwd)
+        if check_password(password,c.spwd):
             return render(request,'home.html')
     return HttpResponse('登录失败')
 # def home(request):
@@ -41,7 +43,7 @@ def register(request):
     # 注册逻辑处理
     if username and password:
         #创建数据模型
-        stu = User(sname=username,spwd=password)
+        stu = User(sname=username,spwd=make_password(password))
         #插入数据库
         stu.save()
         return HttpResponse('注册666')

@@ -23,6 +23,8 @@
             <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="/book/to_add/">新增图书</a>
+        <a class="navbar-brand" href="/book/person?uname={{ uname }}">个人中心（{{ uname }}）</a>
+        <a class="navbar-brand" href="/book/lend_history?uname={{ uname }}">借阅历史</a>
     </div>
 {#    <div class="collapse navbar-collapse" id="example-navbar-collapse">#}
 {#        <ul class="nav navbar-nav">#}
@@ -53,7 +55,7 @@
         <th>图片</th>
         <th>出版社</th>
         <th>数量</th>
-        <th colspan="2">操作</th>
+        <th colspan="3">操作</th>
     </tr>
     {% for book in page_data %}
         <tr>
@@ -64,6 +66,7 @@
             <td>{{ book.book_count }}</td>
             <td><a href="/book/delete?book_id={{ book.book_id  }}" onclick="return confirm('确认删除吗？')">删除</a></td>
             <td><a href="/book/update1?book_id={{ book.book_id  }}">修改</a></td>
+            <td><a href="/book/lend?book_id={{ book.book_id  }}&book_name={{ book.book_name  }}&book_publisher={{ book.book_publisher  }}">借阅</a></td>
         </tr>
     {% endfor %}
 </table>

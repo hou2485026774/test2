@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+   <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{#    <link rel="stylesheet" href="./static/style.css">#}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all">
+<body>
+<table border="1" cellspacing="0" class="table table-bordered" id="table">
+    <tr>
+        <th>图书编号</th>
+        <th>图书名</th>
+        <th>出版社</th>
+        <th>借阅时间</th>
+        <th>用户</th>
+    </tr>
+    {% for lend in lend %}
+        <tr>
+            <td>{{ lend.lbookid }}</td>
+            <td>{{ lend.lbook }}</td>
+            <td>{{ lend.lpublisher }}</td>
+            <td>{{ lend.ltime }}</td>
+            <td>{{ lend.uname }}</td>
+        </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

@@ -11,8 +11,7 @@ python manage.py makemigrations stu 生成迁移文件
 #用户表
 class User(models.Model):
     sname = models.CharField(max_length=30,unique=True) #字符串
-    spwd = models.CharField(max_length=15)
-
+    spwd = models.CharField(max_length=255)
     #设置生成的表的信息
     class Meta:
         db_table = 't_stu2'
